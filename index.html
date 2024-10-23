@@ -1,0 +1,111 @@
+
+<!-- 
+  Document Type Declaration: This document is written in HTML5.
+  Language: English.
+-->
+<!DOCTYPE html>
+<html lang="en">
+
+<!-- 
+  Head Section: Contains metadata about the document.
+-->
+<head>
+  <!-- 
+    Character Encoding: UTF-8 (Universal Character Set).
+  -->
+  <meta charset="UTF-8">
+  
+  <!-- 
+    Viewport Settings: Controls zooming and scaling on mobile devices.
+  -->
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <!-- 
+    Document Title: Appears in browser title bar and search engine results.
+  -->
+  <title>Python Teacher</title>
+  
+  <!-- 
+    Link to External Stylesheet: 'index.css' file in 'static' directory.
+  -->
+  <link rel="stylesheet" href="{{ url_for('static', filename='Styles/index.css') }}">
+</head>
+
+<!-- 
+  Body Section: Contains the document's content.
+-->
+<body>
+  
+  <!-- 
+    Blue Overlay: A div element with a blue background.
+  -->
+  <div class="blue-overlay"></div>
+  
+  <!-- 
+    Background Container: Holds the background image.
+  -->
+  <div class="background-wrapper"></div>
+  
+  <!-- 
+    Main Container: Holds the entire content.
+  -->
+  <div class="container">
+    
+    <!-- 
+      Header Container: Holds the logo and title.
+    -->
+    <div class="header-container">
+      <!-- 
+        Logo and Title: Displayed as a heading.
+      -->
+      <h1>
+        <!-- 
+          Python Logo: Image from official Python website.
+        -->
+        <img class="python-logo" src="https://www.python.org/static/opengraph-icon-200x200.png" alt="Python Logo">
+        PYTHON TEACHER
+      </h1>
+    </div>
+    
+    <!-- 
+      Menu Container: Holds navigation links.
+    -->
+    <div class="menu-container">
+      <!-- 
+        Loop through menu items and display as links.
+      -->
+      {% for item in menu_items %}
+      <a class="menu-item" href="/option/{{ item.option }}">
+        {{ item.description }}
+      </a>
+      {% endfor %}
+    </div>
+    
+    <!-- 
+      Messages Container: Displays messages or errors.
+    -->
+    <div id="messages">
+      <!-- 
+        Check if messages exist, then display as unordered list.
+      -->
+      {% if messages %}
+      <ul>
+        {% for message in messages %}
+        <li>{{ message }}</li>
+        {% endfor %}
+      </ul>
+      {% endif %}
+    </div>
+  </div>
+  
+  <!-- 
+    Import Navigation Bar from separate template.
+  -->
+  {% from "_nav_bar.html" import nav_bar %}
+  
+  <!-- 
+    Render Navigation Bar.
+  -->
+  {{ nav_bar() }}
+</body>
+</html>
